@@ -10,7 +10,7 @@ export default function Login(){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
-        console.log("API URL:", process.env.VITE_API_URL);
+        console.log("API URL:", import.meta.env.VITE_API_URL);
         const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,form);
         localStorage.setItem("token", res.data.token);
         navigate('/');
