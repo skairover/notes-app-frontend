@@ -11,7 +11,7 @@ export default function Login(){
         e.preventDefault();
         try{
         console.log("API URL:", import.meta.env.VITE_API_URL);
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`,form);
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,form);
         localStorage.setItem("token", res.data.token);
         navigate('/');
         }catch (err) {
