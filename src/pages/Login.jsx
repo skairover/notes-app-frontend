@@ -10,12 +10,18 @@ export default function Login(){
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try{
+        console.log("API URL:", process.env.REACT_APP_API_URL);
         const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`,form);
         localStorage.setItem("token", res.data.token);
         navigate('/');
-        }catch(err){
-            alert(err.response.data.error);
-        }
+        }catch (err) {
+  console.error(err);
+  if (err.response && err.response.data && err.response.data.error) {
+    alert(err.response.data.error);
+  } else {
+    alert("An unexpected error occurred. Check the console for more info.");
+  }
+}
         
     }
      const handleRegister = ()=>{
