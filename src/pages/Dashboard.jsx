@@ -20,7 +20,7 @@ export default function Dashboard() {
 
   const fetchNotes = async () => {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/notes`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes(res.data);
@@ -31,7 +31,7 @@ export default function Dashboard() {
 
   const handleAddNote = async (note) => {
     try {
-      const res = await axios.post("http://localhost:5000/api/notes", note, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/notes`, note, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes([...notes, res.data]);
@@ -42,7 +42,7 @@ export default function Dashboard() {
 
   const handleDeleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/notes/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/notes/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotes(notes.filter((note) => note._id !== id));
